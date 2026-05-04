@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zuri Home Care Services | Care That Rises Above</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-dark: #085041;
+    --teal: #0F6E56;
+    --teal-mid: #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-pale: #E1F5EE;
+    --gold: #BA7517;
+    --gold-warm: #EF9F27;
+    --gold-pale: #FDF3E3;
+    --cream: #FAF8F4;
+    --cream-dark: #F0EDE6;
+    --charcoal: #1C1C1A;
+    --gray: #5F5E5A;
+    --gray-light: #B4B2A9;
+    --white: #FFFFFF;
+    --skin1: #8D5524;
+    --skin2: #C68642;
+    --skin3: #3B2314;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--cream); color: var(--charcoal); overflow-x: hidden; font-size: 16px; line-height: 1.7; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(250,248,244,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(15,110,86,0.12); }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo-icon { width: 40px; height: 40px; }
+  .nav-logo-text { font-family: var(--font-display); font-size: 1.35rem; font-weight: 500; color: var(--teal-dark); line-height: 1.1; }
+  .nav-logo-text span { display: block; font-size: 0.63rem; font-family: var(--font-body); font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--gray); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 0.55rem 1.4rem !important; border-radius: 2px !important; font-weight: 500 !important; }
+  .nav-cta:hover { background: var(--teal-dark) !important; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 6rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; }
+  .hero-badge::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+  .hero-title { font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--teal-dark); margin-bottom: 1.75rem; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-desc { font-size: 1rem; font-weight: 300; color: var(--gray); max-width: 420px; line-height: 1.8; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--teal); color: var(--white); padding: 0.85rem 2rem; border: none; border-radius: 2px; font-family: var(--font-body); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; cursor: pointer; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+  .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--teal); padding: 0.85rem 2rem; border: 1px solid var(--teal); border-radius: 2px; font-family: var(--font-body); font-size: 0.88rem; font-weight: 400; letter-spacing: 0.05em; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; }
+  .btn-outline:hover { background: var(--teal); color: var(--white); }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(15,110,86,0.15); }
+  .stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 300; color: var(--teal); line-height: 1; }
+  .stat-label { font-size: 0.72rem; font-weight: 400; color: var(--gray-light); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+  /* HERO RIGHT — photo mosaic */
+  .hero-right { position: relative; overflow: hidden; background: var(--teal-dark); display: grid; grid-template-rows: 1fr 1fr; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .hero-photo { overflow: hidden; position: relative; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .hero-photo:hover img { transform: scale(1.04); }
+  .hero-photo-wide { grid-column: span 2; }
+  .hero-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,80,65,0.6) 0%, transparent 55%); pointer-events: none; }
+  .hero-quote-block { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 2rem; z-index: 2; }
+  .hero-quote { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; font-style: italic; color: var(--teal-pale); line-height: 1.4; }
+  /* SVG scene fallback shown when img hasn't loaded */
+  .scene-wrap { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--white); border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); padding: 1.4rem 4rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 400; color: var(--gray); letter-spacing: 0.04em; }
+  .trust-item svg { color: var(--teal); flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-tag { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+  .section-tag::before { content:''; width:20px; height:1px; background:var(--gold); }
+  .section-title { font-family: var(--font-display); font-size: clamp(2.2rem, 3.5vw, 3.5rem); font-weight: 300; color: var(--teal-dark); line-height: 1.15; margin-bottom: 1.2rem; }
+  .section-title em { font-style: italic; color: var(--teal-mid); }
+  .section-desc { font-size: 0.95rem; font-weight: 300; color: var(--gray); max-width: 520px; line-height: 1.85; }
+
+  /* SERVICES */
+  .services { background: var(--white); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5px; background: var(--cream-dark); border: 1.5px solid var(--cream-dark); }
+  .service-card { background: var(--white); padding: 2.5rem 2rem; transition: background 0.25s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--teal); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover { background: var(--teal-pale); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon { width: 44px; height: 44px; background: var(--teal-pale); border-radius: 2px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; transition: background 0.25s; }
+  .service-card:hover .service-icon { background: var(--teal-light); }
+  .service-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; color: var(--teal-dark); margin-bottom: 0.6rem; }
+  .service-desc { font-size: 0.85rem; font-weight: 300; color: var(--gray); line-height: 1.75; }
+
+  /* PHOTO STRIP */
+  .photo-strip { display: grid; grid-template-columns: repeat(4,1fr); height: 280px; gap: 4px; overflow: hidden; }
+  .photo-strip-item { overflow: hidden; position: relative; cursor: default; }
+  .photo-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+  .photo-strip-item:hover img { transform: scale(1.05); }
+  .photo-strip-item svg { width: 100%; height: 100%; display: block; }
+
+  /* WHY */
+  .why { background: var(--teal-dark); color: var(--white); }
+  .why .section-title { color: var(--teal-pale); }
+  .why .section-desc { color: rgba(255,255,255,0.6); }
+  .why .section-tag { color: var(--gold-warm); }
+  .why .section-tag::before { background: var(--gold-warm); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 3.5rem; border: 1px solid rgba(255,255,255,0.1); }
+  .why-item { padding: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); border-right: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
+  .why-item:hover { background: rgba(255,255,255,0.04); }
+  .why-num { font-family: var(--font-display); font-size: 3rem; font-weight: 300; color: rgba(93,202,165,0.25); line-height: 1; margin-bottom: 1rem; }
+  .why-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; color: var(--teal-light); margin-bottom: 0.5rem; }
+  .why-desc { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+  /* ABOUT */
+  .about { background: var(--cream); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-credentials { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .credential { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; color: var(--gray); padding: 0.75rem 1rem; background: var(--white); border-left: 3px solid var(--teal-mid); }
+  .credential svg { color: var(--teal); flex-shrink: 0; }
+  .about-photo-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 6px; height: 420px; }
+  .about-photo-main { overflow: hidden; border-radius: 2px; }
+  .about-photo-main img, .about-photo-sm img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+  .about-photo-main:hover img, .about-photo-sm:hover img { transform: scale(1.04); }
+  .about-photo-side { display: flex; flex-direction: column; gap: 6px; }
+  .about-photo-sm { flex: 1; overflow: hidden; border-radius: 2px; }
+
+  /* PROCESS */
+  .process { background: var(--white); }
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0; margin-top: 3.5rem; }
+  .process-step { padding: 2rem 1.75rem; border-right: 1px solid var(--cream-dark); }
+  .process-step:last-child { border-right: none; }
+  .step-num { font-family: var(--font-display); font-size: 3.5rem; font-weight: 300; color: var(--teal-pale); line-height: 1; margin-bottom: 1rem; }
+  .step-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; color: var(--teal-dark); margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.82rem; font-weight: 300; color: var(--gray); line-height: 1.75; }
+
+  /* CONDITIONS */
+  .conditions { background: var(--gold-pale); }
+  .conditions-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2.5rem; }
+  .condition-pill { padding: 0.5rem 1.25rem; background: var(--white); border: 1px solid rgba(186,117,23,0.2); color: var(--teal-dark); font-size: 0.82rem; font-weight: 400; border-radius: 2px; transition: all 0.2s; cursor: default; }
+  .condition-pill:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--cream); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .testimonial-card { background: var(--white); padding: 2rem; border-top: 3px solid var(--teal-mid); }
+  .testimonial-stars { display: flex; gap: 3px; margin-bottom: 1rem; color: var(--gold-warm); font-size: 0.9rem; }
+  .testimonial-text { font-family: var(--font-display); font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--teal-dark); line-height: 1.6; margin-bottom: 1.25rem; }
+  .testimonial-author { font-size: 0.78rem; font-weight: 500; color: var(--gray); letter-spacing: 0.05em; text-transform: uppercase; }
+  .testimonial-location { font-size: 0.72rem; color: var(--gray-light); margin-top: 2px; }
+
+  /* CONTACT */
+  .contact { background: var(--teal-dark); }
+  .contact .section-title { color: var(--teal-pale); }
+  .contact .section-desc { color: rgba(255,255,255,0.55); }
+  .contact .section-tag { color: var(--gold-warm); }
+  .contact .section-tag::before { background: var(--gold-warm); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--teal-light); }
+  .contact-item-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-warm); font-weight: 500; margin-bottom: 3px; }
+  .contact-item-val { font-size: 0.9rem; color: rgba(255,255,255,0.8); font-weight: 300; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 400; }
+  .form-input, .form-select, .form-textarea { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--white); padding: 0.75rem 1rem; font-family: var(--font-body); font-size: 0.88rem; font-weight: 300; border-radius: 0; outline: none; transition: border-color 0.2s; }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--teal-light); }
+  .form-select option { background: var(--teal-dark); color: var(--white); }
+  .form-textarea { resize: none; height: 100px; }
+  .form-submit { background: var(--gold); color: var(--white); padding: 1rem 2rem; border: none; font-family: var(--font-body); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; width: 100%; }
+  .form-submit:hover { background: var(--gold-warm); }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+  .footer-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--teal-pale); }
+  .footer-logo span { display: block; font-family: var(--font-body); font-size: 0.65rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-top: 2px; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal-light); }
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+
+  /* WHATSAPP FLOAT */
+  .wa-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); text-decoration: none; animation: pulse-wa 2.5s infinite; transition: transform 0.2s; }
+  .wa-float:hover { transform: scale(1.08); }
+  @keyframes pulse-wa { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.35);}50%{box-shadow:0 4px 32px rgba(37,211,102,0.6);} }
+
+  /* ANIMATIONS */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up-delay-1 { transition-delay: 0.1s; }
+  .fade-up-delay-2 { transition-delay: 0.2s; }
+  .fade-up-delay-3 { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 7rem 1.5rem 3rem; }
+    .hero-right { min-height: 320px; grid-template-rows: 1fr 1fr; }
+    .about-inner, .why-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .photo-strip { grid-template-columns: 1fr 1fr; height: 360px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; padding: 2rem 1.5rem; }
+    .trust-bar { padding: 1rem 1.5rem; gap: 1.2rem; }
+    .about-photo-grid { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none">
+      <rect width="40" height="40" rx="2" fill="#0F6E56"/>
+      <!-- Z lettermark -->
+      <path d="M11 12 L29 12 L11 28 L29 28" stroke="#5DCAA5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="29" cy="12" r="3.5" fill="#BA7517"/>
+    </svg>
+    <div class="nav-logo-text">
+      Zuri Home Care
+      <span>Nursing &amp; Homecare Services</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Visit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge fade-up">Nairobi &amp; Kiambu County, Kenya</div>
+    <h1 class="hero-title fade-up fade-up-delay-1">
+      Care that<br><em>rises above</em><br>the ordinary
+    </h1>
+    <p class="hero-desc fade-up fade-up-delay-2">
+      Clinical-grade nursing care delivered with compassion — in the comfort of your home. Led by a registered nurse with international experience in paediatrics, surgery, and telehealth.
+    </p>
+    <div class="hero-actions fade-up fade-up-delay-3">
+      <a href="#contact" class="btn-primary">Book a Free Assessment</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats fade-up">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Countries served</div>
+      </div>
+      <div>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Care support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- TOP WIDE: nurse with elderly Black patient -->
+    <div class="hero-photo hero-photo-wide" style="position:relative;">
+      <img src="https://images.pexels.com/photos/7551645/pexels-photo-7551645.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" alt="Nurse caring for elderly patient at home" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;width:100%;height:100%;background:#0F6E56;align-items:center;justify-content:center;">
+        <!-- SVG Scene: Nurse (dark skin) caring for elderly patient -->
+        <svg viewBox="0 0 500 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <!-- Room background -->
+          <rect width="500" height="280" fill="#085041"/>
+          <rect x="0" y="200" width="500" height="80" fill="#063d32"/>
+          <!-- Window -->
+          <rect x="340" y="30" width="120" height="100" rx="4" fill="#1D9E75" opacity="0.3"/>
+          <line x1="400" y1="30" x2="400" y2="130" stroke="#5DCAA5" stroke-width="1.5" opacity="0.5"/>
+          <line x1="340" y1="80" x2="460" y2="80" stroke="#5DCAA5" stroke-width="1.5" opacity="0.5"/>
+          <!-- Bed -->
+          <rect x="50" y="160" width="260" height="20" rx="4" fill="#B4B2A9" opacity="0.3"/>
+          <rect x="50" y="145" width="260" height="18" rx="3" fill="#D3D1C7" opacity="0.25"/>
+          <!-- Elderly patient (lying, dark brown skin) -->
+          <!-- Body under sheet -->
+          <rect x="70" y="130" width="220" height="32" rx="6" fill="#8D6E52" opacity="0.4"/>
+          <!-- Head -->
+          <ellipse cx="120" cy="125" rx="22" ry="20" fill="#3B2314"/>
+          <!-- White hair -->
+          <ellipse cx="120" cy="111" rx="18" ry="8" fill="#D3D1C7" opacity="0.7"/>
+          <!-- Face details -->
+          <ellipse cx="112" cy="124" rx="3" ry="3.5" fill="#2a1a0d"/>
+          <ellipse cx="128" cy="124" rx="3" ry="3.5" fill="#2a1a0d"/>
+          <path d="M113 133 Q120 138 127 133" stroke="#2a1a0d" stroke-width="1.5" fill="none"/>
+          <!-- Pillow -->
+          <ellipse cx="118" cy="138" rx="35" ry="12" fill="#E1F5EE" opacity="0.4"/>
+
+          <!-- Nurse (female, medium brown skin, scrubs) -->
+          <!-- Body/scrubs -->
+          <rect x="220" y="100" width="50" height="80" rx="8" fill="#1D9E75"/>
+          <!-- White coat -->
+          <rect x="215" y="100" width="60" height="75" rx="8" fill="white" opacity="0.15"/>
+          <!-- Neck -->
+          <rect x="238" y="85" width="18" height="20" rx="4" fill="#8D5524"/>
+          <!-- Head -->
+          <ellipse cx="247" cy="76" rx="22" ry="24" fill="#8D5524"/>
+          <!-- Hair (natural, dark) -->
+          <ellipse cx="247" cy="60" rx="22" ry="14" fill="#1C1C1A"/>
+          <ellipse cx="247" cy="56" rx="20" ry="10" fill="#2C2C2A"/>
+          <!-- Eyes -->
+          <ellipse cx="239" cy="75" rx="3" ry="3.5" fill="#1C1C1A"/>
+          <ellipse cx="255" cy="75" rx="3" ry="3.5" fill="#1C1C1A"/>
+          <!-- Smile -->
+          <path d="M240 83 Q247 89 254 83" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+          <!-- Nurse cap/cross -->
+          <rect x="238" y="50" width="18" height="4" rx="1" fill="white" opacity="0.8"/>
+          <rect x="245" y="44" width="4" height="14" rx="1" fill="white" opacity="0.8"/>
+          <!-- Stethoscope -->
+          <path d="M230 115 Q220 130 225 145 Q230 155 240 155" stroke="#1C1C1A" stroke-width="2.5" fill="none"/>
+          <circle cx="240" cy="157" r="5" fill="#1C1C1A"/>
+          <!-- Arm extended to patient -->
+          <path d="M220 130 L165 135" stroke="#8D5524" stroke-width="10" stroke-linecap="round"/>
+          <ellipse cx="160" cy="136" rx="10" ry="8" fill="#8D5524"/>
+          <!-- Clipboard -->
+          <rect x="255" y="110" width="30" height="38" rx="2" fill="white" opacity="0.9"/>
+          <rect x="259" y="116" width="22" height="2" rx="1" fill="#888780"/>
+          <rect x="259" y="121" width="18" height="2" rx="1" fill="#888780"/>
+          <rect x="259" y="126" width="20" height="2" rx="1" fill="#888780"/>
+          <!-- Quote overlay area -->
+          <rect x="0" y="200" width="500" height="80" fill="rgba(8,80,65,0.7)"/>
+        </svg>
+      </div>
+      <div class="hero-photo-overlay"></div>
+      <div class="hero-quote-block">
+        <p class="hero-quote">"Every patient deserves the highest standard of care — wherever they call home."</p>
+      </div>
+    </div>
+
+    <!-- BOTTOM LEFT: Mother and newborn -->
+    <div class="hero-photo">
+      <img src="https://images.pexels.com/photos/7468831/pexels-photo-7468831.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Black mother with newborn baby postnatal care" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;width:100%;height:100%;background:#085041;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 250 200" fill="none" style="width:100%;height:100%;">
+          <rect width="250" height="200" fill="#063d32"/>
+          <!-- Mother (dark skin, sitting) -->
+          <ellipse cx="105" cy="160" rx="45" ry="50" fill="#5DCAA5" opacity="0.3"/>
+          <rect x="75" y="105" width="60" height="70" rx="10" fill="#1D9E75"/>
+          <rect x="82" y="98" width="46" height="18" rx="5" fill="#3B2314"/>
+          <ellipse cx="105" cy="88" rx="24" ry="26" fill="#3B2314"/>
+          <ellipse cx="105" cy="70" rx="22" ry="13" fill="#1C1C1A"/>
+          <ellipse cx="97" cy="87" rx="3.5" ry="4" fill="#1C1C1A"/>
+          <ellipse cx="113" cy="87" rx="3.5" ry="4" fill="#1C1C1A"/>
+          <path d="M98 97 Q105 103 112 97" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+          <!-- Baby -->
+          <ellipse cx="140" cy="148" rx="20" ry="16" fill="#E1F5EE" opacity="0.9"/>
+          <ellipse cx="148" cy="142" rx="14" ry="13" fill="#8D5524"/>
+          <ellipse cx="143" cy="140" rx="3" ry="3" fill="#3B2314"/>
+          <ellipse cx="153" cy="140" rx="3" ry="3" fill="#3B2314"/>
+          <!-- Arms cradling baby -->
+          <path d="M80 135 Q100 160 140 155" stroke="#3B2314" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <!-- Gold accent heart -->
+          <path d="M195 40 C195 36 190 32 185 36 C180 32 175 36 175 40 C175 46 185 55 185 55 C185 55 195 46 195 40Z" fill="#BA7517" opacity="0.8"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- BOTTOM RIGHT: Nurse checking child -->
+    <div class="hero-photo">
+      <img src="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Nurse checking child patient" loading="eager" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;width:100%;height:100%;background:#0F6E56;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 250 200" fill="none" style="width:100%;height:100%;">
+          <rect width="250" height="200" fill="#0a5843"/>
+          <!-- Child (sitting on exam table) -->
+          <rect x="80" y="130" width="90" height="15" rx="3" fill="#D3D1C7" opacity="0.4"/>
+          <rect x="100" y="90" width="50" height="45" rx="6" fill="#EF9F27" opacity="0.8"/>
+          <rect x="112" y="78" width="26" height="16" rx="4" fill="#8D5524"/>
+          <ellipse cx="125" cy="68" rx="20" ry="22" fill="#8D5524"/>
+          <ellipse cx="125" cy="52" rx="18" ry="12" fill="#3B2314"/>
+          <ellipse cx="118" cy="67" rx="3" ry="3.5" fill="#3B2314"/>
+          <ellipse cx="132" cy="67" rx="3" ry="3.5" fill="#3B2314"/>
+          <path d="M119 76 Q125 81 131 76" stroke="#3B2314" stroke-width="1.5" fill="none"/>
+          <!-- Nurse kneeling (medium skin) -->
+          <ellipse cx="65" cy="140" rx="20" ry="12" fill="#1D9E75" opacity="0.5"/>
+          <rect x="45" y="90" width="40" height="55" rx="6" fill="#1D9E75"/>
+          <rect x="50" y="83" width="30" height="12" rx="4" fill="#C68642"/>
+          <ellipse cx="65" cy="73" rx="19" ry="21" fill="#C68642"/>
+          <ellipse cx="65" cy="58" rx="17" ry="10" fill="#1C1C1A"/>
+          <ellipse cx="58" cy="72" rx="3" ry="3.5" fill="#1C1C1A"/>
+          <ellipse cx="72" cy="72" rx="3" ry="3.5" fill="#1C1C1A"/>
+          <path d="M59 81 Q65 86 71 81" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+          <!-- Thermometer/stethoscope -->
+          <line x1="82" y1="100" x2="100" y2="110" stroke="#1C1C1A" stroke-width="3" stroke-linecap="round"/>
+          <!-- Cross badge on nurse -->
+          <rect x="56" y="97" width="8" height="2" rx="1" fill="white" opacity="0.9"/>
+          <rect x="59" y="94" width="2" height="8" rx="1" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    NCK Licensed Nurse
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Free Initial Assessment
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Care at Your Home
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    +254 701 822 465
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+    Telehealth Available
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-tag fade-up">What we offer</div>
+      <h2 class="section-title fade-up">Clinical care,<br><em>at your doorstep</em></h2>
+    </div>
+    <p class="section-desc fade-up">Every service is delivered by a licensed registered nurse, personalised to your specific health needs and care goals.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="service-name">Post-Surgical Nursing</div>
+      <div class="service-desc">Expert recovery care after surgery — wound management, IV therapy, pain assessment, and complication monitoring from a qualified OR-trained nurse.</div>
+    </div>
+    <div class="service-card fade-up fade-up-delay-1">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
+      <div class="service-name">Paediatric Home Care</div>
+      <div class="service-desc">Specialist nursing for infants, children, and teenagers — medication, growth monitoring, immunisation support, and parental guidance.</div>
+    </div>
+    <div class="service-card fade-up fade-up-delay-2">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+      <div class="service-name">Chronic Disease Management</div>
+      <div class="service-desc">Ongoing monitoring for diabetes, hypertension, cancer, stroke, dementia, HIV/AIDS, Parkinson's, and other long-term conditions.</div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <div class="service-name">Post-Natal Care</div>
+      <div class="service-desc">Compassionate care for new mothers and newborns — lactation support, newborn assessment, maternal recovery, and family education.</div>
+    </div>
+    <div class="service-card fade-up fade-up-delay-1">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div class="service-name">Telehealth Consultations</div>
+      <div class="service-desc">Remote triage, virtual care coordination, and digital monitoring — ideal for diaspora families managing care of loved ones in Kenya.</div>
+    </div>
+    <div class="service-card fade-up fade-up-delay-2">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="service-name">Wound Care &amp; IV Therapy</div>
+      <div class="service-desc">Professional wound dressing, IV cannulation, infusion therapy, and blood product administration — clinical precision at home.</div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div class="service-name">Elderly Home Care</div>
+      <div class="service-desc">Dignified, patient-centred care for the elderly — personal care assistance, mobility support, medication management, and companionship.</div>
+    </div>
+    <div class="service-card fade-up fade-up-delay-1">
+      <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="service-name">Caregiver Training</div>
+      <div class="service-desc">Professional training for family members and hired caregivers — equipping them with skills to support patients safely at home.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP — SVG illustrated scenes of Black patients -->
+<div class="photo-strip">
+  <!-- Scene 1: Elderly Black man with nurse -->
+  <div class="photo-strip-item">
+    <img src="https://images.pexels.com/photos/7551617/pexels-photo-7551617.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Elderly patient home nursing care" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <svg viewBox="0 0 300 280" fill="none" style="display:none;background:#085041;">
+      <rect width="300" height="280" fill="#085041"/>
+      <rect x="0" y="210" width="300" height="70" fill="#063d32"/>
+      <!-- Armchair -->
+      <rect x="60" y="160" width="140" height="80" rx="12" fill="#8D5524" opacity="0.4"/>
+      <rect x="50" y="140" width="20" height="100" rx="8" fill="#8D5524" opacity="0.3"/>
+      <rect x="190" y="140" width="20" height="100" rx="8" fill="#8D5524" opacity="0.3"/>
+      <!-- Elderly man (dark skin, seated) -->
+      <rect x="105" y="120" width="50" height="60" rx="8" fill="#3B2314"/>
+      <rect x="115" y="110" width="30" height="16" rx="5" fill="#3B2314"/>
+      <ellipse cx="130" cy="100" rx="24" ry="26" fill="#3B2314"/>
+      <!-- Grey hair -->
+      <ellipse cx="130" cy="83" rx="20" ry="10" fill="#B4B2A9" opacity="0.6"/>
+      <ellipse cx="120" cy="98" rx="3.5" ry="4" fill="#1C1C1A"/>
+      <ellipse cx="140" cy="98" rx="3.5" ry="4" fill="#1C1C1A"/>
+      <path d="M121 108 Q130 113 139 108" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Nurse (female, medium skin) -->
+      <rect x="190" y="110" width="45" height="65" rx="8" fill="#1D9E75"/>
+      <rect x="200" y="102" width="25" height="13" rx="4" fill="#C68642"/>
+      <ellipse cx="212" cy="92" rx="20" ry="22" fill="#C68642"/>
+      <ellipse cx="212" cy="77" rx="18" ry="11" fill="#1C1C1A"/>
+      <ellipse cx="205" cy="91" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <ellipse cx="219" cy="91" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <path d="M206 100 Q212 106 218 100" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Arm reaching to patient -->
+      <path d="M190 130 L160 138" stroke="#C68642" stroke-width="9" stroke-linecap="round"/>
+      <!-- BP cuff on patient arm -->
+      <ellipse cx="158" cy="140" rx="12" ry="8" fill="#5DCAA5" opacity="0.8"/>
+      <!-- Teal accent stripe -->
+      <rect x="0" y="0" width="8" height="280" fill="#1D9E75" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <!-- Scene 2: Young Black woman post-natal -->
+  <div class="photo-strip-item">
+    <img src="https://images.pexels.com/photos/6823560/pexels-photo-6823560.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Post-natal mother and baby care" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <svg viewBox="0 0 300 280" fill="none" style="display:none;background:#0F6E56;">
+      <rect width="300" height="280" fill="#0F6E56"/>
+      <rect x="0" y="210" width="300" height="70" fill="#085041"/>
+      <!-- Bed/couch -->
+      <rect x="30" y="180" width="240" height="18" rx="5" fill="#D3D1C7" opacity="0.25"/>
+      <!-- Mother (dark brown skin, sitting up) -->
+      <rect x="95" y="110" width="55" height="75" rx="8" fill="#EF9F27" opacity="0.7"/>
+      <rect x="108" y="100" width="30" height="16" rx="4" fill="#3B2314"/>
+      <ellipse cx="123" cy="89" rx="23" ry="25" fill="#3B2314"/>
+      <ellipse cx="123" cy="72" rx="20" ry="13" fill="#1C1C1A"/>
+      <ellipse cx="115" cy="88" rx="3.5" ry="4" fill="#1C1C1A"/>
+      <ellipse cx="131" cy="88" rx="3.5" ry="4" fill="#1C1C1A"/>
+      <path d="M116 98 Q123 104 130 98" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Baby bundle -->
+      <ellipse cx="160" cy="158" rx="28" ry="22" fill="#E1F5EE" opacity="0.9"/>
+      <ellipse cx="170" cy="150" rx="16" ry="15" fill="#8D5524"/>
+      <ellipse cx="163" cy="148" rx="3" ry="3" fill="#3B2314"/>
+      <ellipse cx="177" cy="148" rx="3" ry="3" fill="#3B2314"/>
+      <!-- Arms cradling -->
+      <path d="M100 140 Q130 170 160 165" stroke="#3B2314" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <!-- Nurse standing -->
+      <rect x="210" y="105" width="40" height="65" rx="7" fill="#1D9E75"/>
+      <rect x="218" y="97" width="24" height="13" rx="4" fill="#C68642"/>
+      <ellipse cx="230" cy="86" rx="18" ry="20" fill="#C68642"/>
+      <ellipse cx="230" cy="72" rx="16" ry="10" fill="#1C1C1A"/>
+      <ellipse cx="223" cy="85" rx="2.5" ry="3" fill="#1C1C1A"/>
+      <ellipse cx="237" cy="85" rx="2.5" ry="3" fill="#1C1C1A"/>
+      <path d="M224 94 Q230 99 236 94" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Nurse's notepad -->
+      <rect x="248" y="120" width="25" height="32" rx="2" fill="white" opacity="0.9"/>
+      <rect x="252" y="126" width="17" height="2" rx="1" fill="#888780"/>
+      <rect x="252" y="131" width="13" height="2" rx="1" fill="#888780"/>
+      <!-- Gold heart -->
+      <path d="M52 45 C52 41 47 37 42 41 C37 37 32 41 32 45 C32 51 42 60 42 60 C42 60 52 51 52 45Z" fill="#BA7517" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <!-- Scene 3: Black child with nurse -->
+  <div class="photo-strip-item">
+    <img src="https://images.pexels.com/photos/5699466/pexels-photo-5699466.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Child receiving home nursing care" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <svg viewBox="0 0 300 280" fill="none" style="display:none;background:#1D9E75;">
+      <rect width="300" height="280" fill="#1D9E75"/>
+      <rect x="0" y="210" width="300" height="70" fill="#0F6E56"/>
+      <!-- Sofa -->
+      <rect x="40" y="170" width="180" height="60" rx="10" fill="#5DCAA5" opacity="0.25"/>
+      <rect x="30" y="150" width="18" height="80" rx="8" fill="#5DCAA5" opacity="0.2"/>
+      <rect x="212" y="150" width="18" height="80" rx="8" fill="#5DCAA5" opacity="0.2"/>
+      <!-- Child (dark skin, seated) -->
+      <rect x="105" y="120" width="44" height="55" rx="7" fill="#EF9F27" opacity="0.9"/>
+      <rect x="115" y="110" width="24" height="15" rx="4" fill="#8D5524"/>
+      <ellipse cx="127" cy="100" rx="20" ry="22" fill="#8D5524"/>
+      <ellipse cx="127" cy="83" rx="18" ry="11" fill="#3B2314"/>
+      <ellipse cx="120" cy="99" rx="3" ry="3.5" fill="#3B2314"/>
+      <ellipse cx="134" cy="99" rx="3" ry="3.5" fill="#3B2314"/>
+      <path d="M121 109 Q127 115 133 109" stroke="#3B2314" stroke-width="1.5" fill="none"/>
+      <!-- Teddy bear -->
+      <ellipse cx="160" cy="152" rx="16" ry="14" fill="#BA7517" opacity="0.7"/>
+      <ellipse cx="160" cy="140" rx="12" ry="12" fill="#BA7517" opacity="0.7"/>
+      <ellipse cx="151" cy="134" rx="5" ry="4" fill="#BA7517" opacity="0.8"/>
+      <ellipse cx="169" cy="134" rx="5" ry="4" fill="#BA7517" opacity="0.8"/>
+      <!-- Nurse (female, light brown skin) -->
+      <rect x="48" y="105" width="42" height="65" rx="7" fill="#1D9E75"/>
+      <rect x="56" y="97" width="26" height="13" rx="4" fill="#C68642"/>
+      <ellipse cx="69" cy="87" rx="20" ry="22" fill="#C68642"/>
+      <ellipse cx="69" cy="72" rx="18" ry="11" fill="#3B2314"/>
+      <!-- Nurse curly hair -->
+      <ellipse cx="59" cy="70" rx="7" ry="10" fill="#3B2314"/>
+      <ellipse cx="79" cy="70" rx="7" ry="10" fill="#3B2314"/>
+      <ellipse cx="62" cy="85" rx="3" ry="3.5" fill="#3B2314"/>
+      <ellipse cx="76" cy="85" rx="3" ry="3.5" fill="#3B2314"/>
+      <path d="M63 95 Q69 101 75 95" stroke="#3B2314" stroke-width="1.5" fill="none"/>
+      <!-- Thermometer -->
+      <line x1="88" y1="118" x2="108" y2="128" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="88" cy="116" r="4" fill="#E24B4A"/>
+      <!-- White cross -->
+      <rect x="60" y="110" width="8" height="2" rx="1" fill="white" opacity="0.9"/>
+      <rect x="63" y="107" width="2" height="8" rx="1" fill="white" opacity="0.9"/>
+    </svg>
+  </div>
+
+  <!-- Scene 4: Home visit, family -->
+  <div class="photo-strip-item">
+    <img src="https://images.pexels.com/photos/7551652/pexels-photo-7551652.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Nurse home visit with family" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+    <svg viewBox="0 0 300 280" fill="none" style="display:none;background:#085041;">
+      <rect width="300" height="280" fill="#085041"/>
+      <rect x="0" y="210" width="300" height="70" fill="#063d32"/>
+      <!-- Table -->
+      <rect x="60" y="165" width="180" height="10" rx="3" fill="#B4B2A9" opacity="0.3"/>
+      <rect x="80" y="175" width="8" height="30" rx="2" fill="#B4B2A9" opacity="0.2"/>
+      <rect x="212" y="175" width="8" height="30" rx="2" fill="#B4B2A9" opacity="0.2"/>
+      <!-- Laptop on table -->
+      <rect x="110" y="148" width="80" height="18" rx="3" fill="#444441"/>
+      <rect x="115" y="152" width="70" height="10" rx="2" fill="#5DCAA5" opacity="0.4"/>
+      <!-- Patient (older woman, dark skin, seated) -->
+      <rect x="170" y="100" width="44" height="70" rx="8" fill="#3B2314"/>
+      <rect x="180" y="90" width="24" height="15" rx="4" fill="#3B2314"/>
+      <ellipse cx="192" cy="79" rx="20" ry="22" fill="#3B2314"/>
+      <!-- Grey braids -->
+      <rect x="174" y="65" width="36" height="15" rx="4" fill="#888780" opacity="0.6"/>
+      <ellipse cx="185" cy="78" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <ellipse cx="199" cy="78" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <path d="M186 88 Q192 93 198 88" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Nurse with tablet (medium brown skin) -->
+      <rect x="80" y="98" width="46" height="68" rx="8" fill="#1D9E75"/>
+      <rect x="90" y="89" width="26" height="14" rx="4" fill="#8D5524"/>
+      <ellipse cx="103" cy="79" rx="20" ry="22" fill="#8D5524"/>
+      <ellipse cx="103" cy="63" rx="18" ry="12" fill="#1C1C1A"/>
+      <ellipse cx="96" cy="78" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <ellipse cx="110" cy="78" rx="3" ry="3.5" fill="#1C1C1A"/>
+      <path d="M97 88 Q103 94 109 88" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+      <!-- Tablet held by nurse -->
+      <rect x="118" y="118" width="32" height="42" rx="3" fill="#444441"/>
+      <rect x="121" y="121" width="26" height="36" rx="2" fill="#5DCAA5" opacity="0.5"/>
+      <!-- Gold accent -->
+      <rect x="292" y="0" width="8" height="280" fill="#BA7517" opacity="0.5"/>
+    </svg>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-tag fade-up">Why choose Zuri</div>
+  <h2 class="section-title fade-up">The difference you'll<br><em>feel from day one</em></h2>
+  <p class="section-desc fade-up">We don't just send a nurse — we build a care partnership rooted in clinical excellence and genuine compassion.</p>
+  <div class="why-grid">
+    <div class="why-item fade-up">
+      <div class="why-num">01</div>
+      <div class="why-title">International clinical standard</div>
+      <div class="why-desc">Our founder brings experience from a Military Medical City Hospital in Qatar — bringing world-class nursing protocols directly to your home.</div>
+    </div>
+    <div class="why-item fade-up fade-up-delay-1">
+      <div class="why-num">02</div>
+      <div class="why-title">Free initial home assessment</div>
+      <div class="why-desc">Before any care begins, we visit your home, meet the patient, and develop a fully customised care plan — at no charge.</div>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-num">03</div>
+      <div class="why-title">Paediatric &amp; surgical specialist</div>
+      <div class="why-desc">Rare dual expertise in paediatric nursing and OR/PACU care — meaning complex post-surgical and child health cases are handled with real confidence.</div>
+    </div>
+    <div class="why-item fade-up fade-up-delay-1">
+      <div class="why-num">04</div>
+      <div class="why-title">Telehealth for diaspora families</div>
+      <div class="why-desc">Are you abroad, caring for parents back home? We offer remote consultations, regular updates, and digital monitoring so you stay fully in the loop.</div>
+    </div>
+    <div class="why-item fade-up" style="border-bottom:none;">
+      <div class="why-num">05</div>
+      <div class="why-title">NCK licensed &amp; professional</div>
+      <div class="why-desc">Fully registered with the Nursing Council of Kenya. Every service meets the highest professional and ethical standards.</div>
+    </div>
+    <div class="why-item fade-up fade-up-delay-1" style="border-bottom:none;">
+      <div class="why-num">06</div>
+      <div class="why-title">Serving Nairobi &amp; Kiambu</div>
+      <div class="why-desc">Based in Ruiru, Kiambu County — covering Nairobi, Kiambu, Thika, and surrounding areas with prompt, reliable home visits.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <div class="section-tag fade-up">Meet the founder</div>
+      <h2 class="section-title fade-up">A nurse who's<br><em>been there</em></h2>
+      <p class="section-desc fade-up">Our founder brings over five years of clinical experience across Kenya and Qatar — from paediatric wards and operating theatres to endoscopy suites and international hospitals — now channelled into exceptional home-based care.</p>
+      <div class="about-credentials fade-up">
+        <div class="credential"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Registered Nurse — Nursing Council of Kenya (NCK)</div>
+        <div class="credential"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Paediatric Clinical Nurse — Military Medical City, Qatar</div>
+        <div class="credential"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>OR &amp; PACU Nurse — 3rd Park Hospital, Nairobi</div>
+        <div class="credential"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Endoscopy Nurse — Makueni Doctors Plaza</div>
+        <div class="credential"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Diploma in Nursing — Kenya Medical Training College</div>
+      </div>
+    </div>
+    <div>
+      <div class="about-photo-grid fade-up">
+        <div class="about-photo-main">
+          <img src="https://images.pexels.com/photos/7551645/pexels-photo-7551645.jpeg?auto=compress&cs=tinysrgb&w=700&h=500&fit=crop" alt="Nurse providing home care" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+          <svg viewBox="0 0 340 420" fill="none" style="display:none;width:100%;height:100%;background:#085041;">
+            <rect width="340" height="420" fill="#085041"/>
+            <!-- Living room background -->
+            <rect x="0" y="300" width="340" height="120" fill="#063d32"/>
+            <!-- Sofa -->
+            <rect x="40" y="250" width="200" height="90" rx="14" fill="#8D5524" opacity="0.35"/>
+            <rect x="25" y="225" width="22" height="115" rx="10" fill="#8D5524" opacity="0.3"/>
+            <rect x="218" y="225" width="22" height="115" rx="10" fill="#8D5524" opacity="0.3"/>
+            <!-- Patient (elderly, dark skin) -->
+            <rect x="100" y="185" width="65" height="75" rx="10" fill="#3B2314"/>
+            <rect x="113" y="172" width="40" height="19" rx="7" fill="#3B2314"/>
+            <ellipse cx="133" cy="158" rx="30" ry="32" fill="#3B2314"/>
+            <ellipse cx="133" cy="136" rx="26" ry="15" fill="#888780" opacity="0.5"/>
+            <ellipse cx="122" cy="156" rx="5" ry="5.5" fill="#1C1C1A"/>
+            <ellipse cx="144" cy="156" rx="5" ry="5.5" fill="#1C1C1A"/>
+            <path d="M123 170 Q133 178 143 170" stroke="#1C1C1A" stroke-width="2" fill="none"/>
+            <!-- Nurse (medium-dark skin, female, standing) -->
+            <rect x="205" y="165" width="70" height="105" rx="12" fill="#1D9E75"/>
+            <rect x="220" y="153" width="40" height="19" rx="7" fill="#8D5524"/>
+            <ellipse cx="240" cy="138" rx="30" ry="33" fill="#8D5524"/>
+            <ellipse cx="240" cy="115" rx="27" ry="17" fill="#1C1C1A"/>
+            <ellipse cx="230" cy="136" rx="4.5" ry="5" fill="#1C1C1A"/>
+            <ellipse cx="250" cy="136" rx="4.5" ry="5" fill="#1C1C1A"/>
+            <path d="M231 148 Q240 155 249 148" stroke="#1C1C1A" stroke-width="2" fill="none"/>
+            <!-- Nurse arm to patient -->
+            <path d="M207 200 L165 208" stroke="#8D5524" stroke-width="12" stroke-linecap="round"/>
+            <ellipse cx="160" cy="210" rx="14" ry="10" fill="#8D5524"/>
+            <!-- Medical bag -->
+            <rect x="248" y="260" width="50" height="40" rx="5" fill="#1C1C1A"/>
+            <rect x="263" y="255" width="20" height="8" rx="3" fill="#1C1C1A"/>
+            <rect x="253" y="270" width="8" height="2" rx="1" fill="#5DCAA5"/>
+            <rect x="256" y="267" width="2" height="8" rx="1" fill="#5DCAA5"/>
+            <!-- Window light -->
+            <rect x="260" y="30" width="60" height="80" rx="4" fill="#1D9E75" opacity="0.2"/>
+            <line x1="290" y1="30" x2="290" y2="110" stroke="#5DCAA5" stroke-width="1" opacity="0.4"/>
+            <line x1="260" y1="70" x2="320" y2="70" stroke="#5DCAA5" stroke-width="1" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="about-photo-side">
+          <div class="about-photo-sm">
+            <img src="https://images.pexels.com/photos/7468831/pexels-photo-7468831.jpeg?auto=compress&cs=tinysrgb&w=400&h=280&fit=crop" alt="Postnatal mother and newborn" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+            <svg viewBox="0 0 200 200" fill="none" style="display:none;width:100%;height:100%;background:#0F6E56;">
+              <rect width="200" height="200" fill="#0F6E56"/>
+              <rect x="85" y="80" width="50" height="70" rx="8" fill="#1D9E75"/>
+              <rect x="95" y="70" width="30" height="16" rx="5" fill="#3B2314"/>
+              <ellipse cx="110" cy="60" rx="24" ry="26" fill="#3B2314"/>
+              <ellipse cx="110" cy="42" rx="21" ry="13" fill="#1C1C1A"/>
+              <ellipse cx="102" cy="59" rx="3.5" ry="4" fill="#1C1C1A"/>
+              <ellipse cx="118" cy="59" rx="3.5" ry="4" fill="#1C1C1A"/>
+              <path d="M103 69 Q110 75 117 69" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+              <ellipse cx="145" cy="128" rx="26" ry="20" fill="#E1F5EE" opacity="0.9"/>
+              <ellipse cx="154" cy="120" rx="15" ry="14" fill="#8D5524"/>
+              <ellipse cx="147" cy="118" rx="2.5" ry="3" fill="#3B2314"/>
+              <ellipse cx="160" cy="118" rx="2.5" ry="3" fill="#3B2314"/>
+              <path d="M88 118 Q115 145 145 140" stroke="#3B2314" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <path d="M168 30 C168 26 163 22 158 26 C153 22 148 26 148 30 C148 36 158 45 158 45 C158 45 168 36 168 30Z" fill="#BA7517" opacity="0.9"/>
+            </svg>
+          </div>
+          <div class="about-photo-sm">
+            <img src="https://images.pexels.com/photos/5699466/pexels-photo-5699466.jpeg?auto=compress&cs=tinysrgb&w=400&h=280&fit=crop" alt="Nurse with child patient" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+            <svg viewBox="0 0 200 200" fill="none" style="display:none;width:100%;height:100%;background:#1D9E75;">
+              <rect width="200" height="200" fill="#1D9E75"/>
+              <!-- Child -->
+              <rect x="100" y="90" width="42" height="52" rx="7" fill="#EF9F27" opacity="0.8"/>
+              <rect x="110" y="80" width="22" height="14" rx="4" fill="#8D5524"/>
+              <ellipse cx="121" cy="70" rx="19" ry="21" fill="#8D5524"/>
+              <ellipse cx="121" cy="55" rx="17" ry="10" fill="#3B2314"/>
+              <ellipse cx="114" cy="69" rx="3" ry="3.5" fill="#3B2314"/>
+              <ellipse cx="128" cy="69" rx="3" ry="3.5" fill="#3B2314"/>
+              <path d="M115 79 Q121 85 127 79" stroke="#3B2314" stroke-width="1.5" fill="none"/>
+              <!-- Nurse -->
+              <rect x="44" y="82" width="40" height="60" rx="7" fill="#085041"/>
+              <rect x="52" y="74" width="24" height="13" rx="4" fill="#C68642"/>
+              <ellipse cx="64" cy="64" rx="18" ry="20" fill="#C68642"/>
+              <ellipse cx="64" cy="50" rx="16" ry="10" fill="#1C1C1A"/>
+              <ellipse cx="57" cy="63" rx="2.5" ry="3" fill="#1C1C1A"/>
+              <ellipse cx="71" cy="63" rx="2.5" ry="3" fill="#1C1C1A"/>
+              <path d="M58 73 Q64 79 70 73" stroke="#1C1C1A" stroke-width="1.5" fill="none"/>
+              <line x1="82" y1="96" x2="102" y2="104" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="81" cy="94" r="4" fill="#E24B4A"/>
+              <rect x="55" y="88" width="7" height="2" rx="1" fill="white" opacity="0.9"/>
+              <rect x="57" y="85" width="2" height="7" rx="1" fill="white" opacity="0.9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-tag fade-up">How it works</div>
+  <h2 class="section-title fade-up">Getting started is<br><em>simple</em></h2>
+  <div class="process-steps">
+    <div class="process-step fade-up"><div class="step-num">01</div><div class="step-title">Get in touch</div><div class="step-desc">Call, WhatsApp, or fill in the enquiry form. Tell us about the patient's needs and location.</div></div>
+    <div class="process-step fade-up fade-up-delay-1"><div class="step-num">02</div><div class="step-title">Free home assessment</div><div class="step-desc">We visit your home, assess the patient, and discuss goals, preferences, and care requirements.</div></div>
+    <div class="process-step fade-up fade-up-delay-2"><div class="step-num">03</div><div class="step-title">Personalised care plan</div><div class="step-desc">A customised care plan is prepared and shared with you and the patient's doctor for alignment.</div></div>
+    <div class="process-step fade-up fade-up-delay-3"><div class="step-num">04</div><div class="step-title">Care begins</div><div class="step-desc">Your dedicated nurse begins visits on the agreed schedule. Regular updates keep you fully informed.</div></div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="conditions">
+  <div class="section-tag fade-up">Conditions we support</div>
+  <h2 class="section-title fade-up">We care for<br><em>all conditions</em></h2>
+  <p class="section-desc fade-up">From acute post-surgical recovery to long-term chronic disease management — our nurses are trained to handle a wide spectrum of medical needs.</p>
+  <div class="conditions-grid fade-up">
+    <div class="condition-pill">Diabetes</div><div class="condition-pill">Hypertension</div><div class="condition-pill">Cancer</div><div class="condition-pill">Stroke</div><div class="condition-pill">Dementia / Alzheimer's</div><div class="condition-pill">HIV/AIDS</div><div class="condition-pill">Parkinson's Disease</div><div class="condition-pill">Post-Surgery Recovery</div><div class="condition-pill">Post-Natal Care</div><div class="condition-pill">Accident Injuries</div><div class="condition-pill">Respiratory Conditions</div><div class="condition-pill">Wound Care</div><div class="condition-pill">Paediatric Illnesses</div><div class="condition-pill">Disability Care</div><div class="condition-pill">Palliative Care</div><div class="condition-pill">Age-Related Challenges</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-tag fade-up">Client testimonials</div>
+  <h2 class="section-title fade-up">What families<br><em>say about us</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"After my mother's hip surgery, the care was exceptional. Thorough, professional, and genuinely caring. Mum healed faster than expected."</div>
+      <div class="testimonial-author">Grace M.</div>
+      <div class="testimonial-location">Kiambu, Kenya</div>
+    </div>
+    <div class="testimonial-card fade-up fade-up-delay-1">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"As a Kenyan living in the UK, I was worried about my father's diabetes management. The telehealth consultations gave me complete peace of mind."</div>
+      <div class="testimonial-author">David K.</div>
+      <div class="testimonial-location">London, UK — Diaspora client</div>
+    </div>
+    <div class="testimonial-card fade-up fade-up-delay-2">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"The paediatric care for my son was outstanding. Everything was explained clearly and he was made to feel completely at ease. Highly recommended."</div>
+      <div class="testimonial-author">Amina W.</div>
+      <div class="testimonial-location">Ruiru, Kenya</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag fade-up">Get in touch</div>
+  <h2 class="section-title fade-up">Book your free<br><em>home assessment</em></h2>
+  <p class="section-desc fade-up">Reach out today and we'll get back to you within a few hours. No obligation — just a conversation about how we can help.</p>
+  <div class="contact-inner">
+    <div>
+      <div class="contact-info fade-up">
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.38 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-val">+254 701 822 465</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-val">zurihomecareservices@gmail.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="contact-item-label">Service Area</div><div class="contact-item-val">Nairobi, Kiambu, Ruiru, Thika &amp; surrounds</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div><div class="contact-item-label">Availability</div><div class="contact-item-val">Mon–Sat: 7am–8pm · Emergency support available</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Your name</label><input class="form-input" type="text" placeholder="Full name"></div>
+        <div class="form-group"><label class="form-label">Phone number</label><input class="form-input" type="tel" placeholder="+254 7XX XXX XXX"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Service needed</label>
+        <select class="form-select">
+          <option value="">Select a service...</option>
+          <option>Post-Surgical Nursing</option>
+          <option>Paediatric Home Care</option>
+          <option>Chronic Disease Management</option>
+          <option>Post-Natal Care</option>
+          <option>Telehealth Consultation</option>
+          <option>Wound Care &amp; IV Therapy</option>
+          <option>Elderly Home Care</option>
+          <option>Caregiver Training</option>
+          <option>Other / Not sure</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Tell us about the patient's needs</label><textarea class="form-textarea" placeholder="Brief description of condition, location, and any specific requirements..."></textarea></div>
+      <button class="form-submit" id="submit-btn">Request Free Assessment</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    Zuri Home Care Services
+    <span>Nursing &amp; Homecare · Nairobi, Kenya</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Zuri Home Care Services. All rights reserved.</div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/254701822465?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20Zuri%20Home%20Care%20Services." target="_blank" title="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    const name = document.querySelector('.form-input').value.trim();
+    if (!name) { alert('Please enter your name.'); return; }
+    this.textContent = "Request sent — we'll be in touch shortly!";
+    this.style.background = '#1D9E75';
+    this.disabled = true;
+  });
+</script>
+</body>
+</html>
